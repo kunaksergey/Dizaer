@@ -9,31 +9,40 @@
     <script src="/js/bootstrap.bundle.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/video.js"></script>
+    <script src="/js/welcome.js"></script>
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
 
-<video preload="preload" autoplay="autoplay" pause="pause" loop="loop" class="video-container">
-    <source th:src="@{'/video/' + ${introRandom.videoName}}" type="video/mp4"/>
-    Your browser does not support the video tag.
-</video>
+<div class="video-content">
+    <video preload="preload" autoplay="autoplay" pause="pause" loop="loop" class="video-container">
+        <source th:src="@{'/video/' + ${introRandom.videoName}}" type="video/mp4"/>
+        Your browser does not support the video tag.
+    </video>
+    <a id="menu" th:href="@{#ex1}" class="btn btn-info btn-sm player-button">
+        <span class="glyphicon glyphicon-pencil">Details</span>
+    </a>
+</div>
+
 
 <div class="container">
-    <div class="row">
-        <div class="col-lg4 card-video" th:each="intro: ${intros}" >
-            <div class="video-header">Header</div>
-            <div class="video-content">
-                <video width="340" height="240" controls="controls"  th:poster="@{'/poster/' + ${intro.posterName}}">
-                    <source th:src="@{'/video/' + ${intro.videoName}}" type="video/mp4"/>
-                </video>
-            </div>
-            <div class="video-footer">
-                <a th:href="@{'/intro/' + ${intro.name}}" class="btn btn-info btn-sm btn-block doctor-details-link">
-                    <span class="glyphicon glyphicon-pencil">Details</span>
-                </a>
+    <section id="ex1">
+        <div class="row">
+            <div class="col-lg4 card-video" th:each="intro: ${intros}">
+                <div class="video-header">Header</div>
+                <div class="video-content">
+                    <video width="340" height="240" controls="controls" th:poster="@{'/poster/' + ${intro.posterName}}">
+                        <source th:src="@{'/video/' + ${intro.videoName}}" type="video/mp4"/>
+                    </video>
+                </div>
+                <div class="video-footer">
+                    <a th:href="@{'/intro/' + ${intro.name}}" class="btn btn-info btn-sm btn-block doctor-details-link">
+                        <span class="glyphicon glyphicon-pencil">Details</span>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>
 </body>
 </html>

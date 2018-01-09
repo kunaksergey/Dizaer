@@ -7,8 +7,13 @@ import javax.persistence.*;
 public class Intro {
     public static final String VIDEO_FORMAT="mp4";
     public static final String POSTER_FORMAT="png";
+
     @Id
-    @Column(name = "name")
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @Column(name="name")
     private String name;
 
     @Column(name="poster_name")
@@ -30,6 +35,14 @@ public class Intro {
         this.name = name;
         this.posterName = posterName;
         this.videoName = videoName;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDescription() {

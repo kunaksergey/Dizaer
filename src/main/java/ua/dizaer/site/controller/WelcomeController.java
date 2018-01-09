@@ -28,7 +28,7 @@ public class WelcomeController {
         List<Intro> listIntro=introService.findAll();
         Integer randonVideoIndex=new Random().nextInt(listIntro.size());
         modelAndView.addObject("introRandom", listIntro.get(randonVideoIndex));
-        modelAndView.addObject("intros", introService.findAll());
+        modelAndView.addObject("intros", introService.findAll().subList(0,9));
         modelAndView.setViewName("index");
         return modelAndView;
     }

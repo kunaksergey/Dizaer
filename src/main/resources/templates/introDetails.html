@@ -6,13 +6,15 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
     <script src="/js/bootstrap.bundle.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/video.js"></script>
+    <script src="/js/intro.js"></script>
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
-<div class="container">
+<div class="container" ng-app="introApp" ng-controller="introCrtl">
     <div class="row">
         <div class="col-lg3"/>
         <div class="col-lg6 card-video">
@@ -23,22 +25,48 @@
                 </video>
             </div>
         </div>
-        <div class="col-lg3"/>
+        <div class="col-lg3 intro">
+            <table class="table table-condensed">
+                <tbody>
+                <tr>
+                    <td>Name:
+                        <span th:text="${intro.name}"></span>
+                    </td>
+                    <td>
+                        <input type="text"
+                               th:value="${intro.name}"
+                               th:ng-model="|${intro.name}|"/>
+                        {{intro.name}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
+    <button ng-click="save()">Test</button>
     <div class="intro_details">
         <h2>Intro details</h2>
         <p><span th:text="${intro.description}"></span></p>
         <table class="table table-condensed">
             <tbody>
             <tr>
-                <td>download link</td>
-                <td><span th:text="${intro.introDetails.downloadLink}"></span></td>
+                <td>download link:
+                    <span th:text="${intro.introDetails.downloadLink}"></span>
+                </td>
+                <td>
+                    <input type="text"
+                           th:value="${intro.introDetails.downloadLink}"
+                           ng-model="intro.introDetails.downloadLink"/>
+                </td>
             </tr>
 
             <tr>
-                <td>👤:client</td>
-                <td><span th:text="${intro.introDetails.client}"></span></td>
+                <td>👤:client <span th:text="${intro.introDetails.client}"></span></td>
+                <td>
+                <input type="text"
+                       th:value="${intro.introDetails.client}"
+                       ng-model="intro.introDetails.client"/>
+                </td>
             </tr>
 
             <tr>
@@ -78,7 +106,9 @@
 
             <tr>
                 <td>🔠:Letterpack:</td>
-                <td><span th:text="${intro.introDetails.letterPack}"></span></td>
+                <td>
+                    <span th:text="${intro.introDetails.letterPack}"></span>
+                </td>
             </tr>
 
             <tr>

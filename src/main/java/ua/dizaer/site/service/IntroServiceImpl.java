@@ -23,8 +23,8 @@ public class IntroServiceImpl implements IntroService {
     private FileBrowserComponent videoFileComponent;
 
     @Override
-    public Intro findOne(String name) {
-        Intro intro = introRepository.findOne(name);
+    public Intro findByName(String name) {
+        Intro intro = introRepository.findByName(name);
         if(intro==null){
             intro=findAll().stream().filter(i->i.getName().equals(name)).findFirst().orElse(new Intro());
             intro.setIntroDetails(new IntroDetails());
