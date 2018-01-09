@@ -32,4 +32,9 @@ public class WelcomeController {
         modelAndView.setViewName("index");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/error",method = RequestMethod.GET)
+    String error(){
+        return "error";
+    }
 }

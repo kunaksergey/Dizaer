@@ -19,8 +19,12 @@ public class IntroController {
   @RequestMapping(value = "/{name}",method = RequestMethod.GET)
   ModelAndView  show(@PathVariable String name, ModelAndView modelAndView){
       Intro intro=introService.findOne(name);
-      modelAndView.addObject("intro",intro);
-      modelAndView.setViewName("introDetails");
+      if(intro.getName()==null){
+       modelAndView.setViewName("redirect:/error");
+      }else {
+          modelAndView.addObject("intro", intro);
+          modelAndView.setViewName("introDetails");
+      }
       return modelAndView;
   }
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.dizaer.site.component.FileBrowserComponent;
 import ua.dizaer.site.model.entity.Intro;
+import ua.dizaer.site.model.entity.IntroDetails;
 import ua.dizaer.site.repository.IntroRepository;
 
 import java.io.File;
@@ -23,7 +24,12 @@ public class IntroServiceImpl implements IntroService {
 
     @Override
     public Intro findOne(String name) {
-        return findAll().stream().filter(intro->intro.getName().equals(name)).findFirst().orElse(null);
+        Intro intro = introRepository.findOne(name);
+        if(intro==null){
+            intro=findAll().stream().filter(i->i.getName().equals(name)).findFirst().orElse(new Intro());
+            intro.setIntroDetails(new IntroDetails());
+        }
+        return intro;
     }
 
     @Override
@@ -40,6 +46,7 @@ public class IntroServiceImpl implements IntroService {
             String videoName=vf;
             return new Intro(introName,posterName,videoName);
         }).collect(Collectors.toList());
+
     }
 
     @Override

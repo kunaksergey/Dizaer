@@ -1,8 +1,6 @@
 package ua.dizaer.site.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="intro")
@@ -10,10 +8,20 @@ public class Intro {
     public static final String VIDEO_FORMAT="mp4";
     public static final String POSTER_FORMAT="png";
     @Id
+    @Column(name = "name")
     private String name;
 
+    @Column(name="poster_name")
     private String posterName;
+
+    @Column(name="video_name")
     private String videoName;
+
+    @Column(name="description")
+    private String description;
+
+    @OneToOne(mappedBy = "intro")
+     private IntroDetails introDetails;
 
     public Intro() {
     }
@@ -22,6 +30,14 @@ public class Intro {
         this.name = name;
         this.posterName = posterName;
         this.videoName = videoName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getName() {
@@ -45,5 +61,13 @@ public class Intro {
 
     public void setVideoName(String videoName) {
         this.videoName = videoName;
+    }
+
+    public IntroDetails getIntroDetails() {
+        return introDetails;
+    }
+
+    public void setIntroDetails(IntroDetails introDetails) {
+        this.introDetails = introDetails;
     }
 }
