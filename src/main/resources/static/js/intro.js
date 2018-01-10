@@ -1,17 +1,18 @@
 var app=angular.module("introApp",[]);
-app.controller("introCrtl",function($scope,$http){
-    var urlSaveIntro="/intro/save";
+app.controller("introCtrl",function($scope,$http){
+    var urlBaseIntro="/intro/";
 
-    $scope.save=function(){
-        console.log($scope.intro);
-        $http.post(urlSaveIntro,$scope.intro)
-            .then(
-                function (response) {
-                    // success callback
-                },
-                function (response) {
-                    // failure callback
-                }
-            );
+    $scope.getIntro=function(name){
+        var urlIntro=urlBaseIntro+name;
+        console.log(urlIntro);
+        $http({
+            method: 'get',
+            url: urlIntro
+        }).then(function (response) {
+            $scope.intro = response.data;
+            console.log($scope.data);
+        }, function (error) {
+            console.log(error, 'can not get data.');
+        });
     }
 });

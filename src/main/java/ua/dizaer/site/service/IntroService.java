@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface IntroService {
     Intro findByName(String string);
-    Intro getRandomIntro();
+    Intro randomIntro();
     List<Intro> findAll();
     Intro findByPosterName(String posterName);
+    List<Intro> randomRangeListIntro();
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ua.dizaer.site.model.entity.Intro;
+import ua.dizaer.site.service.BannerService;
 import ua.dizaer.site.service.IntroService;
 import ua.dizaer.site.service.PosterService;
 import ua.dizaer.site.service.VideoService;
@@ -28,8 +29,8 @@ import java.io.*;
 import static org.jcodec.scale.AWTUtil.toBufferedImage;
 
 @Controller
-@RequestMapping("/poster")
-public class PosterController {
+@RequestMapping("/img")
+public class ImgController {
 //    private static final int second = 3;
 //    @Autowired
 //    private VideoService videoService;
@@ -38,14 +39,24 @@ public class PosterController {
     private PosterService posterService;
 
     @Autowired
+    private BannerService bannerService;
+
+    @Autowired
     private IntroService introService;
 
-    @RequestMapping(method = RequestMethod.GET, value ="/{posterName:.+}",produces = MediaType.IMAGE_PNG_VALUE)
-     public @ResponseBody byte[] stream(@PathVariable String posterName) throws IOException, JCodecException {
+    @RequestMapping(method = RequestMethod.GET, value ="/poster/{posterName:.+}",produces = MediaType.IMAGE_PNG_VALUE)
+     public @ResponseBody byte[] postStream(@PathVariable String posterName) throws IOException, JCodecException {
         File posterFile = posterService.getPoster(posterName);
         InputStream posterFileStream = new FileInputStream(posterFile);
         return IOUtils.toByteArray(posterFileStream);
       }
+
+    @RequestMapping(method = RequestMethod.GET, value ="/banner/{bannerName:.+}",produces = MediaType.IMAGE_PNG_VALUE)
+    public @ResponseBody byte[] bannerStream(@PathVariable String bannerName) throws IOException, JCodecException {
+        File bannerFile = bannerService.getBanner(bannerName);
+        InputStream posterFileStream = new FileInputStream(bannerFile);
+        return IOUtils.toByteArray(posterFileStream);
+    }
 
 //    @RequestMapping(method = RequestMethod.GET, value ="/{posterName:.+}",produces = MediaType.IMAGE_PNG_VALUE)
 //     public @ResponseBody byte[] stream(@PathVariable String posterName) throws IOException, JCodecException {

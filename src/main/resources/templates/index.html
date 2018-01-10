@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Welcome to Dizaer</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
     <script src="/js/bootstrap.bundle.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/video.js"></script>
-    <script src="/js/welcome.js"></script>
+    <script src="/js/intro.js"></script>
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
@@ -25,24 +26,54 @@
 </div>
 
 
-<div class="container">
+<div class="container" ng-app="introApp" ng-controller="introCtrl">
     <section id="ex1">
         <div class="row">
-            <div class="col-lg4 card-video" th:each="intro: ${intros}">
-                <div class="video-header">Header</div>
-                <div class="video-content">
-                    <video width="340" height="240" controls="controls" th:poster="@{'/poster/' + ${intro.posterName}}">
+            <div class="col-lg-4 card-video" th:each="intro: ${intros}">
+                <div class="card-video-header">Header</div>
+                <div class="card-video-content">
+                    <video controls="controls" th:poster="@{'/img/poster/' + ${intro.posterName}}">
                         <source th:src="@{'/video/' + ${intro.videoName}}" type="video/mp4"/>
                     </video>
                 </div>
-                <div class="video-footer">
-                    <a th:href="@{'/intro/' + ${intro.name}}" class="btn btn-info btn-sm btn-block doctor-details-link">
-                        <span class="glyphicon glyphicon-pencil">Details</span>
-                    </a>
+                <div class="card-video-footer">
+                    <button type="button" th:attr="ng-click='getIntro(\''+${intro.name}+'\')'" class="btn btn-info btn-sm btn-block" data-toggle="modal" data-target="#myModal">Open Large Modal</button>
+                    <!--<a th:href="@{'/intro/' + ${intro.name}}" class="btn btn-info btn-sm btn-block">-->
+                        <!--<span class="glyphicon glyphicon-pencil">Details</span>-->
+                    <!--</a>-->
                 </div>
             </div>
         </div>
     </section>
+
+    <section id="ex2">
+        <div class="row">
+            <div class="offset-lg-4 col-lg-4 center-block">
+                <a id="show-more-link" th:href="@{/menu}"
+                   class="btn btn-info btn-sm show-more-button">
+                    <span class="glyphicon glyphicon-pencil">Show more</span>
+                </a>
+            </div>
+         </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 </div>
+                <div class="modal-body">
+                    <div th:replace="introDetails :: intro_details">&nbsp;</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

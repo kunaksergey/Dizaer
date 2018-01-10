@@ -83,4 +83,19 @@ public class Intro {
     public void setIntroDetails(IntroDetails introDetails) {
         this.introDetails = introDetails;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Intro intro = (Intro) o;
+
+        return name != null ? name.equals(intro.name) : intro.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
 }

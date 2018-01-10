@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Intro details</title>
@@ -30,7 +30,7 @@
                 <tbody>
                 <tr>
                     <td>Name:
-                        <span th:text="${intro.name}"></span>
+                        <span>{{intro.name}</span>
                     </td>
                     <td>
                         <input type="text"
@@ -43,143 +43,134 @@
             </table>
         </div>
     </div>
-    <button ng-click="save()">Test</button>
-    <div class="intro_details">
+    <div class="intro_details" ng-app="introApp" ng-controller="introCtrl" th:fragment="intro_details">
         <h2>Intro details</h2>
-        <p><span th:text="${intro.description}"></span></p>
+        <p><span>{{intro.name}}</span></p>
+        <p><span>{{description}}</span></p>
         <table class="table table-condensed">
             <tbody>
             <tr>
                 <td>download link:
-                    <span th:text="${intro.introDetails.downloadLink}"></span>
-                </td>
-                <td>
-                    <input type="text"
-                           th:value="${intro.introDetails.downloadLink}"
-                           ng-model="intro.introDetails.downloadLink"/>
+                    <span>{{downloadLink}}</span>
                 </td>
             </tr>
 
             <tr>
-                <td>👤:client <span th:text="${intro.introDetails.client}"></span></td>
-                <td>
-                <input type="text"
-                       th:value="${intro.introDetails.client}"
-                       ng-model="intro.introDetails.client"/>
-                </td>
+                <td>👤:client <span>{{intro.introDetails.client}}</span></td>
+               
             </tr>
 
             <tr>
                 <td>👥:Dual Partners:</td>
-                <td><span th:text="${intro.introDetails.dual}"></span></td>
+                <td><span>{{intro.introDetails.dual}}</span></td>
             </tr>
 
             <tr>
                 <td>📅:Date Made:</td>
-                <td><span th:text="${intro.introDetails.dateMade}"></span></td>
+                <td><span>{{intro.introDetails.dateMade}}</span></td>
             </tr>
 
             <tr>
                 <td>💡:Lightroom:</td>
-                <td><span th:text="${intro.introDetails.lightRoom}"></span></td>
+                <td><span>{{intro.introDetails.lightRoom}}</span></td>
             </tr>
 
             <tr>
                 <td>💎:CC: </td>
-                <td><span th:text="${intro.introDetails.cc}"></span></td>
+                <td><span>{{intro.introDetails.cc}}</span></td>
             </tr>
 
             <tr>
                 <td>🎵:Song: </td>
-                <td><span th:text="${intro.introDetails.song}"></span></td>
+                <td><span>{{intro.introDetails.song}}</span></td>
             </tr>
 
             <tr>
                 <td>🎼:Song Link:</td>
-                <td><span th:text="${intro.introDetails.songLink}"></span></td>
+                <td><span>{{intro.introDetails.songLink}}</span></td>
             </tr>
 
             <tr>
                 <td>🔤:Font:</td>
-                <td><span th:text="${intro.introDetails.font}"></span></td>
+                <td><span>{{intro.introDetails.font}}</span></td>
             </tr>
 
             <tr>
                 <td>🔠:Letterpack:</td>
                 <td>
-                    <span th:text="${intro.introDetails.letterPack}"></span>
+                    <span>{{intro.introDetails.letterPack}}</span>
                 </td>
             </tr>
 
             <tr>
                 <td>🔮:Mats:</td>
-                <td><span th:text="${intro.introDetails.mats}"></span></td>
+                <td><span>{{intro.introDetails.mats}}</span></td>
             </tr>
 
             <tr>
                 <td>🎥:Shake: </td>
-                <td><span th:text="${intro.introDetails.shake}"></span></td>
+                <td><span>{{intro.introDetails.shake}}</span></td>
             </tr>
 
             <tr>
                 <td>🎨:Style:</td>
-                <td><span th:text="${intro.introDetails.style}"></span></td>
+                <td><span>{{intro.introDetails.style}}</span></td>
             </tr>
 
             <tr>
                 <td>👼:Inspirations:</td>
-                <td><span th:text="${intro.introDetails.inspirations}"></span></td>
+                <td><span>{{intro.introDetails.inspirations}}</span></td>
             </tr>
 
             <tr>
                 <td>💥:Shockwaves: </td>
-                <td><span th:text="${intro.introDetails.shockwaves}"></span></td>
+                <td><span>{{intro.introDetails.shockwaves}}</span></td>
             </tr>
 
             <tr>
                 <td>🔷:OBJ's:</td>
-                <td><span th:text="${intro.introDetails.obj}"></span></td>
+                <td><span>{{intro.introDetails.obj}}</span></td>
             </tr>
 
             <tr>
                 <td>🔮:Other's:</td>
-                <td><span th:text="${intro.introDetails.other}"></span></td>
+                <td><span>{{intro.introDetails.other}}</span></td>
             </tr>
 
             <tr>
                 <td>🎥:Render Option:</td>
-                <td><span th:text="${intro.introDetails.renderOption}"></span></td>
+                <td><span>{{intro.introDetails.renderOption}}</span></td>
             </tr>
 
             <tr>
                 <td>⌛:Work Time:</td>
-                <td><span th:text="${intro.introDetails.workTime}"></span></td>
+                <td><span>{{intro.introDetails.workTime}}</span></td>
             </tr>
 
             <tr>
                 <td>⌛:Render Time:</td>
-                <td><span th:text="${intro.introDetails.renderTime}"></span></td>
+                <td><span>{{intro.introDetails.renderTime}}</span></td>
             </tr>
 
             <tr>
                 <td>🎞️:Quality:</td>
-                <td><span th:text="${intro.introDetails.quality}"></span></td>
+                <td><span>{{intro.introDetails.quality}}</span></td>
             </tr>
 
             <tr>
                 <td>💻:Programs Used: </td>
-                <td><span th:text="${intro.introDetails.programUsed}"></span></td>
+                <td><span>{{intro.introDetails.programUsed}}</span></td>
             </tr>
 
             <tr>
                 <td>📼:Format:</td>
-                <td><span th:text="${intro.introDetails.format}"></span></td>
+                <td><span>{{intro.introDetails.format}}</span></td>
             </tr>
 
             </tbody>
         </table>
     </div>
-</div>
+ </div>
 </body>
 </html>
 
