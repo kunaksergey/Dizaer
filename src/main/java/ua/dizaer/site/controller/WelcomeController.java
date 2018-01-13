@@ -29,6 +29,6 @@ public class WelcomeController {
 
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
     String menu() {
-        return "/menu";
+        return "/menu_second";
     }
 }

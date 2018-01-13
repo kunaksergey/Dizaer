@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#menu").on("click", function (event) {
+    $("#scroll-page-link").on("click", function (event) {
         event.preventDefault();
         console.log("here");
         var id = $(this).attr('href'),
